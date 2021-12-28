@@ -1,9 +1,13 @@
+const DB = require("./db/dbOperations");
+
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 10;
 
 async function GetVideos(req, res, next) {
   const page = req.query.page || DEFAULT_PAGE;
   const limit = req.query.limit || DEFAULT_LIMIT;
+
+  await DB.AddVideo();
 
   res.json({
     page,
