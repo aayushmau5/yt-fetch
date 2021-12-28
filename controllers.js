@@ -7,11 +7,12 @@ async function GetVideos(req, res, next) {
   const page = req.query.page || DEFAULT_PAGE;
   const limit = req.query.limit || DEFAULT_LIMIT;
 
-  await DB.AddVideo();
+  const videos = await DB.GetVideos();
 
   res.json({
     page,
     limit,
+    videos,
   });
 }
 

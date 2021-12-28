@@ -1,8 +1,11 @@
-const VideosDb = require("./Model");
+const DB = require("./Model");
 
-async function AddVideo() {
-  const data = await VideosDb.create({ title: "string" });
-  console.log(data);
+async function AddVideos(videos) {
+  return DB.insertMany(videos);
 }
 
-module.exports = { AddVideo };
+async function GetVideos() {
+  return DB.find().exec();
+}
+
+module.exports = { AddVideos, GetVideos };
