@@ -10,7 +10,7 @@ async function fetchVideosDataFromYoutube(query = "cricket") {
     const queryResult = await YT.search.list({
       type: "video",
       order: "date",
-      publishedAfter: new Date(),
+      publishedAfter: () => new Date(),
       q: query,
       part: ["snippet"],
       maxResults: 20,
