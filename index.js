@@ -4,17 +4,19 @@ require("dotenv").config(); // dotenv for secrets
 const controllers = require("./controllers");
 const { establishMongodbConnection } = require("./db/connect");
 const { initCronJob } = require("./utils/cron");
+const errorHandler = require("./utils/error/handler");
+const CustomError = require("./utils/error/customError");
 
 const PORT = process.env.PORT || 8000;
 
 app.get("/videos", controllers.GetVideos);
 
 app.use((req, res, next) => {
-  // the catch-all handler
-  res.status(404).json({
-    message: "page not found",
-  });
+  next(CustomError.PageNotFound());
 });
+
+// error handler
+app.use(errorHandler);
 
 establishMongodbConnection()
   .then(() => {
