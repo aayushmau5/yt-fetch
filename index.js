@@ -7,9 +7,14 @@ const { initCronJob } = require("./utils/cron");
 
 const PORT = process.env.PORT || 8000;
 
-app.get("/", controllers.GetVideos);
+app.get("/videos", controllers.GetVideos);
 
-app.get("/search", controllers.SearchForVideos);
+app.use((req, res, next) => {
+  // the catch-all handler
+  res.status(404).json({
+    message: "page not found",
+  });
+});
 
 establishMongodbConnection()
   .then(() => {
