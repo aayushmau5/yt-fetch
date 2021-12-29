@@ -1,8 +1,10 @@
+const CustomError = require("./error/customError");
+
 function ValidateQueryParam(paramName, param) {
   if (typeof param !== "number") {
     const paramInNumber = Number(param);
     if (Number.isNaN(paramInNumber)) {
-      throw new Error(`Invalid parameter: ${paramName}`); // throw custom error
+      throw CustomError.ValidationError(`Invalid parameter: ${paramName}`);
     }
     return paramInNumber;
   }

@@ -4,7 +4,7 @@ const Youtube = require("./Youtube");
 const DB = require("../db/dbOperations");
 
 // cron job that will run every 10 seconds
-// updates the database with yt videos
+// updates the database with new yt videos
 function initCronJob() {
   const task = cron.schedule("*/10 * * * * *", async function () {
     try {
