@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // the database object schema
-module.exports = new mongoose.Schema(
+const schema = new mongoose.Schema(
   {
     title: String,
     description: String,
@@ -9,23 +9,17 @@ module.exports = new mongoose.Schema(
     channelTitle: String,
     videoId: String,
     publishedAt: Date,
-    thumbnails: {
-      default: {
-        url: String,
-        width: Number,
-        height: Number,
-      },
-      medium: {
-        url: String,
-        width: Number,
-        height: Number,
-      },
-      high: {
-        url: String,
-        width: Number,
-        height: Number,
-      },
+    thumbnail: {
+      url: String,
+      width: Number,
+      height: Number,
     },
   },
-  { timestamps: true }
+  { timestamps: true, autoIndex: false }
 );
+
+schema.index({
+  publishedAt: -1,
+});
+
+module.exports = schema;

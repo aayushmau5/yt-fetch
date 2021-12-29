@@ -29,10 +29,8 @@ function transformYoutubeData(items) {
       channelId: item.snippet.channelId,
       channelTitle: item.snippet.channelTitle,
       videoId: item.id.videoId,
-      thumbnails: {
-        default: item.snippet.thumbnails.default,
-        medium: item.snippet.thumbnails.medium,
-        high: item.snippet.thumbnails.high,
+      thumbnail: {
+        ...item.snippet.thumbnails.default,
       },
       publishedAt: item.snippet.publishedAt,
     };
