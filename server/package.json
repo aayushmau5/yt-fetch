@@ -14,8 +14,8 @@
     "url": "git+https://github.com/aayushmau5/yt-fetch.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Aayush Kumar Sahu <aayushmau5@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/aayushmau5/yt-fetch/issues"
   },
