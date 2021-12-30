@@ -76,7 +76,7 @@ function ShowSearchStats({ stats }) {
   return (
     <div>
       <p>Total pages: {stats.totalPages}</p>
-      <p>Total videos: {stats.totalVideos}</p>
+      <p>Total videos: {stats.videosCount}</p>
     </div>
   );
 }

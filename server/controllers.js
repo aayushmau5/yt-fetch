@@ -17,21 +17,19 @@ async function GetVideos(req, res, next) {
     const query = req.query.query;
 
     let videos = [];
-    let totalVideos = 0;
+    let videosCount = 0;
 
     if (query) {
-      const searchResults = await DB.SearchVideos(query, page, limit); //TODO: limit the search query.
-
-      totalVideos = searchResults.length;
-      videos = searchResults.splice(limit * page - 1, limit);
+      videos = await DB.SearchVideos(query, page, limit);
+      videosCount = await DB.SearchResultCount(query);
     } else {
       videos = await DB.GetVideos(page, limit);
-      totalVideos = await DB.EstimatedNumberOfVideos();
+      videosCount = await DB.EstimatedNumberOfVideos();
     }
 
     res.json({
-      totalVideos,
-      totalPages: Math.ceil(totalVideos / limit),
+      videosCount,
+      totalPages: Math.ceil(videosCount / limit),
       page,
       videos,
     });
